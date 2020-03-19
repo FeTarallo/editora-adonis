@@ -55,6 +55,7 @@
 				<h3>CADASTRE-SE</h3>
                 <form method="POST" action="{{ route('register') }}">
                 @csrf
+                    <input id="userLevel" type="hidden" name="userLevel" value="1">
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Nome Completo" required autocomplete="name" autofocus>
                     @error('name')
                         <span class="invalid-feedback" role="alert">

@@ -1,0 +1,34 @@
+.add-circle{
+   vertical-align:middle; 
+   font-size:20px; 
+   margin-right:5px;
+}
+
+.search {
+   vertical-align:middle; 
+   font-size:20px;
+   background-color: #ff7b17;
+   color: #fff;
+}
+
+.btn-style{
+   background-color: #ff7b17;
+   border-bottom-color: #ff7b17;
+   border-top-color: #ff7b17;
+   border-right-color: #ff7b17;
+   border-left-color: #ff7b17;
+   color: #fff;
+}
+
+.btn-style:hover{
+   background-color: #ff7b17;
+   border-bottom-color: #ff7b17;
+   border-top-color: #ff7b17;
+   border-right-color: #ff7b17;
+   border-left-color: #ff7b17;
+   color: #fff;
+}
+
+.show-title {
+   color: #ff7b17;
+}

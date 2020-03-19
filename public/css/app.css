@@ -116,6 +116,7 @@ body {
   width: calc(100% - 260px);
   height: 100%;
   float: right;
+  padding: 40px;
 }
 
 .sidebar-wrapper ul {
