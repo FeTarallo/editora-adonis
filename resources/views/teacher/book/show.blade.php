@@ -4,9 +4,12 @@
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
    <style>
       @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+      @import url('https://fonts.googleapis.com/css?family=Just+Another+Hand&display=swap');
       .box1 {
          height: 350px;
          margin-top: 30px;
+         padding-top:50px;
+         padding-left:50px;
       }
       .container {
          height: 100px;
@@ -25,6 +28,7 @@
       }
       .box2 {
          height: 400px;
+         padding-left:50px;
       }
       .container-ficha-catalografica {
          border: 1px solid black;
@@ -40,9 +44,11 @@
       }
       .box3 {
          height: 100px;
+         padding-left:50px;
       }
       .box4 {
          height: 100px;
+         padding-left:50px;
       }
       .page-break{
          page-break-after: always;
@@ -52,12 +58,10 @@
          flex-direction: column;
          align-items: center;
          justify-content: center;
-         background-color: #9BC43F;
-         height: 980px;
          padding: 50px;
       }
       .card-apresentacao {
-         width: 630px;
+         width: 850px;
          height: 400px;
          background-color: #fff;
          border-radius: 30px;
@@ -66,19 +70,78 @@
       .espaco-card {
          margin-top: 50px;
       }
-      .foto-escritor {
-         height: 100px;
-         width: 150px;
-         background-color: yellow;
-      }
       .pag1 {
+         background-color:#ADD9F1;
          width: 50%;
          float: left;
+         height: 1076px;
+      }
+      .pagina-sinopse {
+         padding: 100px;
+      }
+      .card-sinopse {
+         background-color: #fff;
+         width: 800px;
+         height: 450px;
+         border: 3px solid #3DB3E6;
+         border-radius: 20px;
+         margin-top: 230px;
+      }
+      .titulo-sinopse {
+         text-transform: uppercase;
+         font-family: 'Just Another Hand', cursive;
+         font-size: 3em;
+         text-align: center;
+         margin-top: 5px;
+      }
+      .texto-sinopse {
+         font-size: 1.5em;
+         padding:30px;
+         text-align: justify;
+      }
+      span {
+         display:inline-block;
+         border-bottom:2px solid #F39D55;
+         padding-bottom:1px;
       }
       .pag2 {
-         background-color: yellow;
+         background-color: #00A8C4;
          width: 50%;
-         height: 250px;
+         height: 1076px;
+         float: right;
+      }
+      .pagina-capa {
+         padding: 50px;
+      }
+      .card-capa {
+         background-color: #fff;
+         width: 900px;
+         height: 980px;
+         border-radius: 25px;
+      }
+      .titulo-capa {
+         text-transform: uppercase;
+         color: #F39D55;
+         font-family: 'Just Another Hand', cursive;
+         font-size: 2.5em;
+         padding: 30px;
+         margin-top: 15px;
+      }
+      .apresentacao-capa {
+         text-transform: uppercase;
+         font-family: 'Just Another Hand', cursive;
+         font-size: 2em;
+         padding: 30px;
+      }
+      .pag3 {
+         width: 50%;
+         float: left;
+         height: 1076px;
+      }
+      .pag4 {
+         background-color: #9BC43F;
+         width: 50%;
+         height: 1076px;
          float:right;
       }
       .row {
@@ -88,7 +151,7 @@
 </head>
 <body>
    <div class="row">
-      <div class="pag1">
+      <div class="pag3">
          <div class="box1">
             <div class="container">
                <label class="font-style font-title">COPYRIGHT © 2019</label>
@@ -133,10 +196,34 @@
             Imagem de rodapé
          </div>
       </div>
-      <div class="pag2">
-         Página 2
+      <div class="pag4">
+         <div class="pagina-apresentacao">
+            <div class="card-apresentacao"></div>
+            <div class="card-apresentacao espaco-card"></div>
+         </div>
       </div>
    </div>
    <div class="page-break"></div>
+   <div class="row">
+      <div class="pag1">
+         <div class="pagina-sinopse">
+            <div class="card-sinopse">
+               <div class="titulo-sinopse">sinopse</div>
+               <div class="texto-sinopse"><span>{{$data["book"]->sinopse}}</span></div>
+            </div>
+         </div>
+      </div>
+      <div class="pag2">
+         <div class="pagina-capa">
+            <div class="card-capa">
+               <div class="titulo-capa">{{$data["book"]->name}}</div>
+               <div class="apresentacao-capa">
+                  <p>escritor(a): {{$data["ficha"]->writer_name}} {{$data["ficha"]->writer_lastname}}</p>
+                  <p>ilustrador(a): {{$data["ficha"]->illustrator_name}} {{$data["ficha"]->illustrator_lastname}}</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </body>
 </html>

@@ -173,11 +173,15 @@ class BookController extends Controller
         $pdf = \PDF::loadView('teacher.book.show', compact('data'));
         $pdf->setOption('page-width', '428');
         $pdf->setOption('page-height', '228');
+        $pdf->setOption('margin-top', '0');
+        $pdf->setOption('margin-bottom', '0');
+        $pdf->setOption('margin-right', '0');
+        $pdf->setOption('margin-left', '0');
         $pdf->setOption('enable-javascript', true);
         $pdf->setOption('javascript-delay', 5000);
         $pdf->setOption('enable-smart-shrinking', true);
         $pdf->setOption('no-stop-slow-scripts', true);
-        return $pdf->download('graph.pdf');
+        return $pdf->stream();
     }
 
     public function edit($id)
