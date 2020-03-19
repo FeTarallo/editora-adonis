@@ -76,3 +76,17 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+<!-- - Poderá criar e liberar novos usuários comuns e até
+mesmo novos administradores.
+- Área para fazer download dos itens enviados pelo
+usuário comum, como imagens, fotos, textos, áudios e
+etc.
+Usuário
+- Ao se criar uma seção ele pode escolher o que quer
+enviar nessa seção, exemplo, imagem, vídeo, áudio.
+- Sem limite de envio por cada Sala(turma)
+Pagamento
+- Sistema de pagamento para compra do livro integrado
+ao Pagseguro -->
