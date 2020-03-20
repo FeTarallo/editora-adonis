@@ -47,8 +47,12 @@
          padding-left:50px;
       }
       .box4 {
-         height: 100px;
+         height: 200px;
          padding-left:50px;
+      }
+      .rodape-ficha {
+         height:110px;
+         margin-top: 20px;
       }
       .page-break{
          page-break-after: always;
@@ -69,6 +73,11 @@
       }
       .espaco-card {
          margin-top: 50px;
+      }
+      .apresentacao-nome {
+         text-transform: uppercase;
+         font-family: 'Just Another Hand', cursive;
+         font-size: 2em;
       }
       .pag1 {
          background-color:#ADD9F1;
@@ -144,8 +153,30 @@
          height: 1076px;
          float:right;
       }
-      .row {
-         background-color: pink;
+      .imagem-capa {
+         height: 600px;
+         text-align:center;
+      }
+      .cover {
+         display:inline-block;
+         padding: 50px;
+         max-height: 500px;
+         max-width: 1600px;
+      }
+      .rotated {
+         width: 170px;
+         height: 220px;
+         -ms-transform: rotate(20deg); /* IE 9 */
+         transform: rotate(20deg);
+         border: 4px solid  #F39D55;
+         border-radius: 15px;
+      }
+      .apresentacao-imagem {
+         min-width: 170px;
+         min-height: 220px;
+         max-width: 170px;
+         max-height: 220px;
+         border-radius: 15px;
       }
    </style>
 </head>
@@ -193,13 +224,27 @@
             <p class="font-style">R. José Bonifácio, 174 - Americana/SP, CEP 13478-040</p>
          </div>
          <div class="box4">
-            Imagem de rodapé
+            <img src="{{ public_path('storage/images/rodape_ficha.png') }}" alt="logo" class="rodape-ficha"/>
          </div>
       </div>
       <div class="pag4">
          <div class="pagina-apresentacao">
-            <div class="card-apresentacao"></div>
-            <div class="card-apresentacao espaco-card"></div>
+            <div class="card-apresentacao">
+               <div class="apresentacao">
+                  <p class="apresentacao-nome">quem escreveu  {{$data["introduction"]->writer_name}}</p>
+               </div>
+               <div class="rotated">
+                  <img class="apresentacao-imagem" src="{{public_path('storage/images/'.$data['introduction']->writer_image)}}">
+               </div>
+            </div>
+            <div class="card-apresentacao espaco-card">
+               <div class="apresentacao">
+                  <p class="apresentacao-nome">quem ilustrou  {{$data["introduction"]->illustrator_name}}</p>
+               </div>
+               <div class="rotated">
+                  <img class="apresentacao-imagem" src="{{public_path('storage/images/'.$data['introduction']->illustrator_image)}}">
+               </div>
+            </div>
          </div>
       </div>
    </div>
@@ -220,6 +265,9 @@
                <div class="apresentacao-capa">
                   <p>escritor(a): {{$data["ficha"]->writer_name}} {{$data["ficha"]->writer_lastname}}</p>
                   <p>ilustrador(a): {{$data["ficha"]->illustrator_name}} {{$data["ficha"]->illustrator_lastname}}</p>
+               </div>
+               <div class="imagem-capa">
+                  <img class="cover" src="{{public_path('storage/images/'.$data['book']->cover)}}">
                </div>
             </div>
          </div>

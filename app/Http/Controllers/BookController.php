@@ -164,10 +164,12 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
         $ficha = Ficha::where('book_id', $id)->first();
+        $introduction = Introduction::where('book_id', $id)->first();
         // dd($introduction->writer_name);
         $data = [
-            'book'       => $book,
-            'ficha'      => $ficha,
+            'book'          => $book,
+            'ficha'         => $ficha,
+            'introduction'  => $introduction,
         ];
 
         $pdf = \PDF::loadView('teacher.book.show', compact('data'));
