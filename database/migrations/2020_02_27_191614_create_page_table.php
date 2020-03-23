@@ -17,6 +17,7 @@ class CreatePageTable extends Migration
             $table->bigIncrements('id');
             $table->string('image');
             $table->text('text');
+            $table->integer('num_page');
             $table->integer('book_id')->index('fk_page_book1');
             $table->timestamps();
         });

@@ -2,17 +2,19 @@
     <table id="school-table" class="table table-hover">
         <thead>
             <tr class="table-secondary table-style">
-                <th width="">ID</th>
-                <th colspan="3">Ações</th>
+                <th width="">Título</th>
+                <th width="">Turma</th>
+                <th colspan="1">Ações</th>
             </tr>
         </thead>
         <tbody>
             @foreach($books as $book)
                 <tr>
-                    <td>{{$book->id}}</td>
+                    <td>{{$book->name}}</td>
+                    <td>{{$book->school_class_id}}</td>
                     @if($status == "ativos")
                     <td class="min">
-                        <a class="btn btn-info btn-sm" href='{{ url("book/$book->id") }}'><i class="fas fa-search"></i> Ver</a>
+                        <a class="btn btn-info btn-sm" href='{{ url("book/$book->id") }}'><i class="fas fa-download"></i> Download</a>
                     </td>
                     @endif
                 </tr>

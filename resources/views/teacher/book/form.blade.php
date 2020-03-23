@@ -127,21 +127,30 @@
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                <div class="card-body">
                <h3 class="sub-title col-lg-12"><i class="fas fa-bookmark"></i> Páginas</h3>
+               @php 
+                  $x = 0;
+               @endphp
                @foreach(old('pages', $data['pages']) as $key => $page)
+               @php 
+                  $x += 1;
+               @endphp
                <div id="pages">
-                  <div class="row page">
-                     <div class="col-lg-3 imgUp">
-                        <div class="imagePreview"></div>
-                        <label class="btn btn-secondary">Upload
-               			   <input type="file" id="image" class="uploadFile img" name="page[{{$key}}][image]" value="" style="width: 0px;height: 0px;overflow: hidden;">
-               		   </label>
-                     </div>
-                     <div class="addDel">
-                        <i class="fa fa-plus pageAdd"></i>
-                        <i class="fa fa-trash-alt pageDel"></i>
-                     </div>
-                     <div class="col-lg-8">
-                        <textarea class="form-control" id="ckeditor" name="page[{{$key}}][text]" required></textarea>
+                  <div class="box">
+                     <h4 class="sub-title col-lg-12">Página {{$x}}</h4>
+                     <div class="row page">
+                        <div class="col-lg-3 imgUp">
+                           <div class="imagePreview"></div>
+                           <label class="btn btn-secondary">Upload
+                  			   <input type="file" id="image" class="uploadFile img" name="page[{{$key}}][image]" value="" style="width: 0px;height: 0px;overflow: hidden;">
+                  		   </label>
+                        </div>
+                        <div class="addDel">
+                           <i class="fa fa-plus pageAdd"></i>
+                           <i class="fa fa-trash-alt pageDel"></i>
+                        </div>
+                        <div class="col-lg-8">
+                           <textarea class="form-control" id="ckeditor" name="page[{{$key}}][text]" required></textarea>
+                        </div>
                      </div>
                   </div>
                </div>

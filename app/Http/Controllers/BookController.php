@@ -92,8 +92,12 @@ class BookController extends Controller
                 'reviewer_lastname'     => $request['ficha']['reviewer_lastname'],
                 'book_id'               => $book->id,
             ]);
+            
+            $x = 0;
 
             foreach ($request->page as $page) {
+                
+                $x += 1;
 
                 if ($page['image'] && $page['image']->isValid() && ($page['image']->extension() == 'jpg' || $page['image']->extension() == 'png' || $page['image']->extension() == 'jpeg')) {
                     $name = md5($page['image']);
@@ -107,11 +111,12 @@ class BookController extends Controller
                 } else {
                     return redirect()->back()->with('error', 'Falha, formato de arquivo inválido');
                 }
-
+                
                 $page = Page::Create([
-                    'image'   => $image,
-                    'text'    => $page['text'],
-                    'book_id' => $book->id,
+                    'image'     => $image,
+                    'text'      => $page['text'],
+                    'num_page'  => $x,
+                    'book_id'   => $book->id,
                 ]);
             }
             
@@ -165,11 +170,31 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
         $ficha = Ficha::where('book_id', $id)->first();
         $introduction = Introduction::where('book_id', $id)->first();
-        // dd($introduction->writer_name);
+        $pages = Page::where('book_id', $id)->get();  
+        $numOfPages = $pages->count();
+        $middle = $numOfPages/2;
+        $pageLeft = $middle;
+        $pageRight = $middle + 1;
+        for($i = 0; $i < $middle; $i++) {
+           $folhas[] = ['pageLeft' => $pageLeft, 'pageRight' => $pageRight];
+           $pageLeft  -= 1;
+           $pageRight += 1;
+        }
+        $left = $middle;
+        $right = $middle + 1;
+        foreach($folhas as $folha){
+            $pagesLeft  = Page::select('id', 'image', 'text')->where('book_id', $id)->where('num_page', $left)->first();   
+            $pagesRight = Page::select('id', 'image', 'text')->where('book_id', $id)->where('num_page', $right)->first(); 
+            $pairs[] = ['pageLeft' => $pagesLeft, 'pageRight' => $pagesRight];
+            $left  -= 1;
+            $right += 1;
+        }
+
         $data = [
             'book'          => $book,
             'ficha'         => $ficha,
             'introduction'  => $introduction,
+            'pairs'         => $pairs,
         ];
 
         $pdf = \PDF::loadView('teacher.book.show', compact('data'));
@@ -183,7 +208,7 @@ class BookController extends Controller
         $pdf->setOption('javascript-delay', 5000);
         $pdf->setOption('enable-smart-shrinking', true);
         $pdf->setOption('no-stop-slow-scripts', true);
-        return $pdf->stream();
+        return $pdf->download('seuLivro.pdf');
     }
 
     public function edit($id)
